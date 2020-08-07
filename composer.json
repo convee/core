@@ -1,0 +1,13 @@
+{
+    "name": "convee/core",
+    "description": "php core",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "convee",
+            "email": "convee.cn@gmail.com"
+        }
+    ],
+    "require": {}
+}
