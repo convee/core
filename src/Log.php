@@ -13,77 +13,70 @@ class Log
     const DEBUG = 'debug';
 
     /**
-     * @param string $message
-     * @param array  $context
+     * @param $message
      */
-    public static function alert($message, array $context = array())
+    public static function alert($message)
     {
-        self::write(self::ALERT, $message, $context);
+        self::write(self::ALERT, $message);
     }
 
     /**
      * @param $message
-     * @param array $context
      */
-    public static function notice($message, array $context = array())
+    public static function notice($message)
     {
-        self::write(self::NOTICE, $message, $context);
+        self::write(self::NOTICE, $message);
     }
 
     /**
-     * @param string $message
-     * @param array  $context
+     * @param $message
      */
-    public static function error($message, array $context = array())
+    public static function error($message)
     {
-        self::write(self::ERROR, $message, $context);
+        self::write(self::ERROR, $message);
     }
 
     /**
-     * @param string $message
-     * @param array  $context
+     * @param $message
      */
-    public static function warn($message, array $context = array())
+    public static function warn($message)
     {
-        self::write(self::WARNING, $message, $context);
+        self::write(self::WARNING, $message);
     }
 
     /**
      * 流程追踪
-     * @param string $message
-     * @param array  $context
+     * @param $message
      */
-    public static function trace($message, array $context = array())
+    public static function trace($message)
     {
-        self::write(self::TRACE, $message, $context);
+        self::write(self::TRACE, $message);
     }
 
     /**
      * 重要事件
-     * @param string $message
-     * @param array  $context
+     * @param $message
      */
-    public static function info($message, array $context = array())
+    public static function info($message)
     {
-        self::write(self::INFO, $message, $context);
+        self::write(self::INFO, $message);
     }
 
     /**
      * debug
-     * @param string $message
-     * @param array  $context
+     * @param $message
      */
-    public static function debug($message, array $context = array())
+    public static function debug($message)
     {
-        self::write(self::DEBUG, $message, $context);
+        self::write(self::DEBUG, $message);
     }
+
     /**
      * 写日志
      * @param $message
      * @param $level
-     * @param array $context
      */
-    public static function write($message, $level, $context = array())
+    public static function write($level, $message)
     {
         if (is_object($message)) {
             $message = json_decode(json_encode($message), true);
@@ -91,12 +84,6 @@ class Log
 
         if (is_array($message)) {
             $message = json_encode($message, JSON_UNESCAPED_UNICODE);
-        }
-
-        if (!empty($context)) {
-            foreach ($context as $key => $val) {
-                $message = str_replace('{' . $key . '}', $val, $message);
-            }
         }
 
         $trace = debug_backtrace();
