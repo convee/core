@@ -9,5 +9,10 @@
             "email": "convee.cn@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Convee\\Core\\": "src/"
+        }
+    },
     "require": {}
 }
