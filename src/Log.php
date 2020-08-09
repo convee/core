@@ -1,6 +1,6 @@
 <?php
 
-namespace Library\Core;
+namespace Convee\Core;
 
 class Log
 {
