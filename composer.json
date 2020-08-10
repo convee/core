@@ -1,12 +1,14 @@
 {
     "name": "convee/core",
-    "description": "php core",
+    "description": "php core class",
     "type": "project",
+    "homepage": "https://github.com/convee/core",
     "license": "MIT",
     "authors": [
         {
             "name": "convee",
-            "email": "convee.cn@gmail.com"
+            "email": "convee.cn@gmail.com",
+            "homepage": "http://github.com/convee"
         }
     ],
     "autoload": {
@@ -14,5 +16,7 @@
             "Convee\\Core\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "php":">=7.0"
+    }
 }
