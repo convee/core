@@ -8,19 +8,24 @@ use PDOException;
 
 class Db
 {
-    public static $config;
+    public static $configs;
     public static $pdo;
 
     public function __construct()
     {
     }
 
-    public static function init($config)
+    public static function init($configs)
     {
-        if (!isset($config['host'], $config['dbname'], $config['user'],$config['password'])) {
+        if (empty($configs) || !is_array($configs)) {
             throw new PDOException('pdo config error.');
         }
-        self::$config = $config;
+        foreach ($configs as $db => $config) {
+            if (!isset($config['host'], $config['dbname'], $config['user'],$config['password'])) {
+                throw new PDOException('pdo config error.');
+            }
+        }
+        self::$configs = $configs;
     }
 
     /**
@@ -30,10 +35,10 @@ class Db
     public static function pdo($db = 'default')
     {
         if (!self::$pdo) {
-            $host = self::$config[$db]['host'];
-            $dbname = self::$config[$db]['dbname'];
-            $user = self::$config[$db]['user'];
-            $password = self::$config[$db]['password'];
+            $host = self::$configs[$db]['host'];
+            $dbname = self::$configs[$db]['dbname'];
+            $user = self::$configs[$db]['user'];
+            $password = self::$configs[$db]['password'];
             $option = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC);
             self::$pdo = new PDO(sprintf('mysql:host=%s;dbname=%s;charset=utf8', $host, $dbname), $user, $password, $option);
         }
